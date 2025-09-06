@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>History Quiz</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { text-align: center; }
+        .question { margin-bottom: 15px; }
+        .options { margin-left: 20px; }
+        button { margin-top: 20px; padding: 10px 20px; }
+        .result { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>History Quiz</h1>
+    <form id="quizForm">
+        <div class="question">
+            <p>1. Who was the first President of the United States?</p>
+            <div class="options">
+                <input type="radio" name="q1" value="George Washington" required> George Washington<br>
+                <input type="radio" name="q1" value="Abraham Lincoln"> Abraham Lincoln<br>
+                <input type="radio" name="q1" value="Thomas Jefferson"> Thomas Jefferson<br>
+                <input type="radio" name="q1" value="John Adams"> John Adams<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>2. In which year did World War II end?</p>
+            <div class="options">
+                <input type="radio" name="q2" value="1945" required> 1945<br>
+                <input type="radio" name="q2" value="1939"> 1939<br>
+                <input type="radio" name="q2" value="1918"> 1918<br>
+                <input type="radio" name="q2" value="1963"> 1963<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>3. Which civilization built the Pyramids?</p>
+            <div class="options">
+                <input type="radio" name="q3" value="Romans" required> Romans<br>
+                <input type="radio" name="q3" value="Egyptians"> Egyptians<br>
+                <input type="radio" name="q3" value="Greeks"> Greeks<br>
+                <input type="radio" name="q3" value="Aztecs"> Aztecs<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>4. Who discovered America?</p>
+            <div class="options">
+                <input type="radio" name="q4" value="Christopher Columbus" required> Christopher Columbus<br>
+                <input type="radio" name="q4" value="Leif Erikson"> Leif Erikson<br>
+                <input type="radio" name="q4" value="Ferdinand Magellan"> Ferdinand Magellan<br>
+                <input type="radio" name="q4" value="Marco Polo"> Marco Polo<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>5. The Great Wall is located in which country?</p>
+            <div class="options">
+                <input type="radio" name="q5" value="India" required> India<br>
+                <input type="radio" name="q5" value="China"> China<br>
+                <input type="radio" name="q5" value="Japan"> Japan<br>
+                <input type="radio" name="q5" value="Egypt"> Egypt<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>6. Who was known as the Maid of Orléans?</p>
+            <div class="options">
+                <input type="radio" name="q6" value="Joan of Arc" required> Joan of Arc<br>
+                <input type="radio" name="q6" value="Cleopatra"> Cleopatra<br>
+                <input type="radio" name="q6" value="Queen Elizabeth"> Queen Elizabeth<br>
+                <input type="radio" name="q6" value="Catherine the Great"> Catherine the Great<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>7. What year did the French Revolution begin?</p>
+            <div class="options">
+                <input type="radio" name="q7" value="1789" required> 1789<br>
+                <input type="radio" name="q7" value="1776"> 1776<br>
+                <input type="radio" name="q7" value="1804"> 1804<br>
+                <input type="radio" name="q7" value="1812"> 1812<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>8. Who was the first emperor of Rome?</p>
+            <div class="options">
+                <input type="radio" name="q8" value="Julius Caesar" required> Julius Caesar<br>
+                <input type="radio" name="q8" value="Augustus"> Augustus<br>
+                <input type="radio" name="q8" value="Nero"> Nero<br>
+                <input type="radio" name="q8" value="Caligula"> Caligula<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>9. Which empire was ruled by Genghis Khan?</p>
+            <div class="options">
+                <input type="radio" name="q9" value="Mongol Empire" required> Mongol Empire<br>
+                <input type="radio" name="q9" value="Ottoman Empire"> Ottoman Empire<br>
+                <input type="radio" name="q9" value="Roman Empire"> Roman Empire<br>
+                <input type="radio" name="q9" value="Persian Empire"> Persian Empire<br>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>10. What year did India gain independence?</p>
+            <div class="options">
+                <input type="radio" name="q10" value="1947" required> 1947<br>
+                <input type="radio" name="q10" value="1950"> 1950<br>
+                <input type="radio" name="q10" value="1935"> 1935<br>
+                <input type="radio" name="q10" value="1942"> 1942<br>
+            </div>
+        </div>
+
+        <button type="button" onclick="checkQuiz()">Submit</button>
+    </form>
+
+    <div id="result" class="result"></div>
+
+    <script>
+        const answers = {
+            q1: "George Washington",
+            q2: "1945",
+            q3: "Egyptians",
+            q4: "Christopher Columbus",
+            q5: "China",
+            q6: "Joan of Arc",
+            q7: "1789",
+            q8: "Augustus",
+            q9: "Mongol Empire",
+            q10: "1947"
+        };
+
+        function checkQuiz() {
+            let score = 0;
+            for (let i = 1; i <= 10; i++) {
+                const qName = "q" + i;
+                const userAnswer = document.querySelector(`input[name="${qName}"]:checked`);
+                if (userAnswer && userAnswer.value === answers[qName]) {
+                    score++;
+                }
+            }
+            const passed = score >= 4; // 40% passing score
+            document.getElementById("result").innerHTML = `
+                Your Score: ${score} / 10 <br>
+                ${passed ? "Congratulations! You passed the quiz." : "Sorry, you did not pass. Try again!"}
+            `;
+        }
+    </script>
+</body>
+</html>
